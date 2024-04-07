@@ -1,6 +1,6 @@
 ---
 - name: CREATE DIRECTORY & COPY FILES
-  hosts: 40.112.138.47
+  hosts: localhost
   remote_user: root
   become: yes
   become_method: sudo
