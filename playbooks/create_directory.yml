@@ -3,6 +3,7 @@
   hosts: localhost
   remote_user: root
   become: yes
+  become_method: sudo
   tasks:
     - name: CREATE DOCKER DIRECTORY
       file:
