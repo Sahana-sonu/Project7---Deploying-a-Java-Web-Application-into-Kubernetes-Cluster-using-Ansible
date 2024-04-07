@@ -38,11 +38,9 @@ pipeline {
     }
         stage('COPY JAR & DOCKERFILE') {
             steps {
-                withAnsiblePlaybook(playbook: 'playbooks/create_directory.yml', become: yes) {
-                   
-                    credentialsId 'docker-cred'
-               // sh 'ansible-playbook playbooks/create_directory.yml'
-                }
+               
+               sh 'ansible-playbook playbooks/create_directory.yml'
+                
             }
         }
         
