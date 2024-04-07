@@ -38,7 +38,20 @@ pipeline {
     }
         stage('COPY JAR & DOCKERFILE') {
             steps {
-               sh "ansible-playbook -e 'become_password=Admin@1729' playbooks/create_directory.yml"
+                script {
+                    // Generate dynamic inventory
+                    def inventoryContent = '''
+                    [all]
+                    localhost ansible_connection=local
+                    '''
+
+                    // Write the inventory to a temporary file
+                    def inventoryFile = writeFile file: 'inventory', text: become-password="Admin@1729"
+
+                    // Run Ansible playbook using the dynamically generated inventory
+                    sh "ansible-playbook -i ${inventoryFile} playbooks/create_directory.yml"
+                }
+              // sh "ansible-playbook -e 'become_password=Admin@1729' playbooks/create_directory.yml"
               // sh 'ansible-playbook playbooks/create_directory.yml'
                 
             }
