@@ -1,16 +1,18 @@
 ---
 - name: CREATE DIRECTORY & COPY FILES
-  hosts: localhost
+  hosts: 40.112.138.47
   remote_user: root
   become: yes
   become_method: sudo
-  become_password: "{{ become_password }}"
+
   tasks:
     - name: CREATE DOCKER DIRECTORY
       file:
         path: /opt/docker
         state: directory
-        mode: "0755"      
+        mode: "0755"    
+        become_password: "{{ become_password }}"
+        
 
     - name: COPY DOCKERFILE
       copy:
