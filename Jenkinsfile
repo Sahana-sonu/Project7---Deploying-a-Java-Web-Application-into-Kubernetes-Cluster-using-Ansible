@@ -1,20 +1,11 @@
 pipeline {
     agent any
-    environment {
-      PATH = "$PATH:/opt/apache-maven-3.9.1/bin"
-    }
     
     stages {
 
-        stage('CLEAN WORKSPACE') {
-            steps {
-                cleanWs()
-            }
-        }
-
         stage('CODE CHECKOUT') {
             steps {
-                git branch: 'main', url: 'https://github.com/iamsaikishore/Project7---Deploying-a-Java-Web-Application-into-Kubernetes-Cluster-using-Ansible.git'
+                git branch: 'main', url: 'https://github.com/Sahana-sonu/Project7---Deploying-a-Java-Web-Application-into-Kubernetes-Cluster-using-Ansible.git'
             }
         }
         
@@ -35,18 +26,16 @@ pipeline {
             }
         }
         
-        stage('SONAR SCANNER') {
-            environment {
-            sonar_token = credentials('SONAR_TOKEN')
-            }
-            steps {
-                sh 'mvn sonar:sonar -Dsonar.projectName=$JOB_NAME \
-                    -Dsonar.projectKey=$JOB_NAME \
-                    -Dsonar.host.url=https://sonar.kishq.co \
-                    -Dsonar.token=$sonar_token'
-            }
+   stage('Static Code Analysis') {
+      environment {
+        SONAR_URL = "http://40.112.138.150:9000/"
+      }
+      steps {
+        withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
+          sh 'cd spring-boot-app && mvn sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}'
         }
-        
+      }
+    }
         stage('COPY JAR & DOCKERFILE') {
             steps {
                 sh 'ansible-playbook playbooks/create_directory.yml'
@@ -55,16 +44,16 @@ pipeline {
         
         stage('PUSH IMAGE ON DOCKERHUB') {
             environment {
-            dockerhub_user = credentials('DOCKERHUB_USER')            
-            dockerhub_pass = credentials('DOCKERHUB_PASS')
+            dockerhub_user = credentials('docker-cred')            
+            //dockerhub_pass = credentials('DOCKERHUB_PASS')
             }    
             steps {
                 
                 sh 'ansible-playbook playbooks/push_dockerhub.yml \
                     --extra-vars "JOB_NAME=$JOB_NAME" \
                     --extra-vars "BUILD_ID=$BUILD_ID" \
-                    --extra-vars "dockerhub_user=$dockerhub_user" \
-                    --extra-vars "dockerhub_pass=$dockerhub_pass"'              
+                    --extra-vars "dockerhub_user=$docker-cred" '
+                    //--extra-vars "dockerhub_pass=$dockerhub_pass"'              
             }
         }
         
