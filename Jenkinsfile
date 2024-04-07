@@ -38,8 +38,8 @@ pipeline {
     }
         stage('COPY JAR & DOCKERFILE') {
             steps {
-               
-               sh 'ansible-playbook playbooks/create_directory.yml'
+               sh "ansible-playbook -e 'become_password=Admin@1729' playbooks/create_directory.yml"
+              // sh 'ansible-playbook playbooks/create_directory.yml'
                 
             }
         }
