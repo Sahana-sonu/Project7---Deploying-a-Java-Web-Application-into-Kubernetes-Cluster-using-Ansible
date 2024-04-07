@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: kishq-app
-        image: iamsaikishore/image-name:latest        
+        image: sahanasonu272/image-name:latest        
         ports:
         - containerPort: 8080        
         readinessProbe:
