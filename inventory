@@ -1,1 +1,1 @@
-52.167.200.192 ansible_username=azureuser ansible_password=Sonusahana45@ ansible_become_password=Sonusahana45@
+52.167.200.192 ansible_username=azureuser ansible_password=Sonusahana45 ansible_become_password=Sonusahana45
