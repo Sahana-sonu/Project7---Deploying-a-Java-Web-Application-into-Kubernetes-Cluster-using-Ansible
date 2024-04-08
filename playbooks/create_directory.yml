@@ -1,8 +1,7 @@
----
 - name: CREATE DIRECTORY & COPY FILES
   hosts: localhost
   remote_user: root
-  become: True
+  become: yes
   become_method: sudo
 
   tasks:
@@ -10,9 +9,7 @@
       file:
         path: /opt/docker
         state: directory
-        mode: "0755"    
-        
-        
+        mode: "0755"
 
     - name: COPY DOCKERFILE
       copy:
@@ -23,3 +20,4 @@
       copy:
         src: ../webapp/target/webapp.war
         dest: /opt/docker
+        remote_src: true
