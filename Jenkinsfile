@@ -41,8 +41,8 @@ pipeline {
                 
               // sh "ansible-playbook -e 'become_password=Admin@1729' playbooks/create_directory.yml"
                //sh 'ansible-playbook playbooks/create_directory.yml'
-             //  sh 'ansible-playbook playbooks/create_directory.yml -i inventory'
-               sh 'ansible-playbook playbooks/create_directory.yml -i inventory --extra-vars "ansible_ssh_common_args=\'-o StrictHostKeyChecking=no\'"'
+               sh 'ansible-playbook playbooks/create_directory.yml -i inventory'
+              // sh 'ansible-playbook playbooks/create_directory.yml -i inventory --extra-vars "ansible_ssh_common_args=\'-o StrictHostKeyChecking=no\'"'
                 
             }
         }
