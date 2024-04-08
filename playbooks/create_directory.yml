@@ -9,12 +9,14 @@
       file:
         path: /opt/docker
         state: directory
+        remote_src: true
         mode: "0755"
 
     - name: COPY DOCKERFILE
       copy:
         src: ../Dockerfile
         dest: /opt/docker
+        remote_src: true
 
     - name: COPY WAR FILE
       copy:
