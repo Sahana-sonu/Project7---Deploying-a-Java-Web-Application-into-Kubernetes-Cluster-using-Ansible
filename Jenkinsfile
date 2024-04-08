@@ -40,7 +40,7 @@ pipeline {
             steps {
                 
              
-               sh 'ansible-playbook playbooks/create_directory.yml -i inventory'
+               sh 'ansible-playbook playbooks/create_directory.yml -i hosts'
               // sh 'ansible-playbook playbooks/create_directory.yml -i inventory --extra-vars "ansible_ssh_common_args=\'-o StrictHostKeyChecking=no\'"'
                 
             }
