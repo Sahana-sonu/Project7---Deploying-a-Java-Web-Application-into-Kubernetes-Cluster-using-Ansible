@@ -23,11 +23,11 @@ spec:
       - name: kishq-app
         image: sahanasonu272/image-name:latest        
         ports:
-        - containerPort: 8080        
+        - containerPort: 8000        
         readinessProbe:
           httpGet:
             path: /webapp
-            port: 8080
+            port: 8000
           initialDelaySeconds: 30
           periodSeconds: 30
           successThreshold: 1
@@ -47,7 +47,7 @@ spec:
   ports:
   - name: http
     port: 80
-    targetPort: 8080
+    targetPort: 8000
     nodePort: 30000
   - name: https
     port: 443
