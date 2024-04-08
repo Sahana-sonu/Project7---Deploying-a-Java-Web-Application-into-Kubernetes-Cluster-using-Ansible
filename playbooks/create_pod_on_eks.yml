@@ -1,6 +1,7 @@
 ---
 - name: DEPLOYMENT ON EKS
   hosts: all
+  become: yes
   tasks:  
     - name: CREATE PLAYBOOKS DIR ON EKS CLUSTER
       file:
