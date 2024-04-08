@@ -1,0 +1,2 @@
+[webservers]
+52.167.200.192 ansible_user=azureuser ansible_password=Sonusahana45@ ansible_become_password=Sonusahana45@
