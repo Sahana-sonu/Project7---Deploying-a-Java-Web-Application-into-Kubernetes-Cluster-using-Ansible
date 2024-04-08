@@ -1,6 +1,6 @@
 ---
 - name: CREATE DIRECTORY & COPY FILES
-  hosts: webservers
+  hosts: localhost
   remote_user: root
   become: True
   become_method: sudo
