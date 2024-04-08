@@ -1,7 +1,6 @@
 ---
 - name: DEPLOYMENT ON EKS
-  hosts: kubernetes
-  remote_user: root
+  hosts: all
   tasks:  
     - name: CREATE PLAYBOOKS DIR ON EKS CLUSTER
       file:
