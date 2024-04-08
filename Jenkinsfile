@@ -28,7 +28,7 @@ pipeline {
         
    stage('Static Code Analysis') {
       environment {
-        SONAR_URL = "http://40.112.138.150:9000/"
+        SONAR_URL = "http://52.167.200.192:9000/"
       }
       steps {
         withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
@@ -41,7 +41,7 @@ pipeline {
                 
               // sh "ansible-playbook -e 'become_password=Admin@1729' playbooks/create_directory.yml"
                //sh 'ansible-playbook playbooks/create_directory.yml'
-               sh 'ansible-playbook -i inventories/hosts playbooks/create_directory.yml'
+               sh 'ansible-playbook -i playbooks/inventory playbooks/create_directory.yml'
                 
             }
         }
