@@ -1,5 +1,5 @@
 - name: CREATE DIRECTORY & COPY FILES
-  hosts: localhost
+  hosts: all
   remote_user: root
   become: yes
   become_method: sudo
