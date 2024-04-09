@@ -64,7 +64,7 @@ pipeline {
         
         stage('DEPLOYMENT ON K8S') {
             steps {
-                sh 'ansible-playbook playbooks/create_pod_on_eks.yml -i hosts\
+                sh 'ansible-playbook playbooks/create_pod_on_eks.yml -i hosts1\
                     --extra-vars "JOB_NAME=$JOB_NAME"'
             }            
         }
