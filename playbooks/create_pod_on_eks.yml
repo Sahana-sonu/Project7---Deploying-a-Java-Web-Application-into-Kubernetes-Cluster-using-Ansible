@@ -34,7 +34,7 @@
       shell: sleep 100      
 
     - name: STATUS OF DEPLOYMENT
-      shell: kubectl get pod
+      shell: kubectl --kubeconfig=/etc/kubernetes/admin.conf get pod
       register: get_deployment_status
 
     - name: PRINT DEPLOYMENT STATUS
